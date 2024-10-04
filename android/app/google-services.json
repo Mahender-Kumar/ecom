@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "522103144883",
+    "project_id": "dummy-ecom-beb97",
+    "storage_bucket": "dummy-ecom-beb97.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522103144883:android:d28e75eeff90c648ae8bc6",
+        "android_client_info": {
+          "package_name": "com.dummy.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU1hXlz6MEdHfPHwzz3J9MNOImW9okwU4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
