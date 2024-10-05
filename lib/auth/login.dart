@@ -1,9 +1,28 @@
-
+import 'package:ecom/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  bool isLoading = false;
+
+  void login() async {
+    context.read<FirebaseAuthMethods>().loginWithEmail(
+          email: emailController.text,
+          password: passwordController.text,
+          context: context,
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +127,8 @@ class LoginPage extends StatelessWidget {
                                         bottom: BorderSide(
                                             color: Color.fromRGBO(
                                                 143, 148, 251, 1)))),
-                                child: TextField(
+                                child: TextFormField(
+                                  controller: emailController,
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
                                       hintText: "Email or Phone number",
@@ -118,7 +138,8 @@ class LoginPage extends StatelessWidget {
                               ),
                               Container(
                                 padding: const EdgeInsets.all(8.0),
-                                child: TextField(
+                                child: TextFormField(
+                                  controller: passwordController,
                                   obscureText: true,
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
@@ -131,24 +152,56 @@ class LoginPage extends StatelessWidget {
                           ),
                         )),
                     const SizedBox(
+                      height: 8,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        FadeInUp(
+                            duration: const Duration(milliseconds: 2000),
+                            child: const Text(
+                              "Forgot Password?",
+                              style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  color: Color.fromRGBO(143, 148, 251, 1)),
+                            )),
+                      ],
+                    ),
+                    const SizedBox(
                       height: 30,
                     ),
                     FadeInUp(
                         duration: const Duration(milliseconds: 1900),
-                        child: Container(
-                          height: 50,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              gradient: const LinearGradient(colors: [
-                                Color.fromRGBO(143, 148, 251, 1),
-                                Color.fromRGBO(143, 148, 251, .6),
-                              ])),
-                          child: const Center(
-                            child: Text(
-                              "Login",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              isLoading = true;
+                            });
+                            if (emailController.text.isEmpty ||
+                                !emailController.text.contains('@')) {
+                              // Show an error message
+                            } else if (passwordController.text.isEmpty ||
+                                passwordController.text.length < 6) {
+                              // Show another error message
+                            } else {
+                              login();
+                            }
+                          },
+                          child: Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                gradient: const LinearGradient(colors: [
+                                  Color.fromRGBO(143, 148, 251, 1),
+                                  Color.fromRGBO(143, 148, 251, .6),
+                                ])),
+                            child: const Center(
+                              child: Text(
+                                "Login",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
                           ),
                         )),
@@ -157,10 +210,17 @@ class LoginPage extends StatelessWidget {
                     ),
                     FadeInUp(
                         duration: const Duration(milliseconds: 2000),
-                        child: const Text(
-                          "Forgot Password?",
-                          style: TextStyle(
-                              color: Color.fromRGBO(143, 148, 251, 1)),
+                        child: InkWell(
+                          onTap: () {
+                            print('asdasdd');
+
+                            context.go('/register');
+                          },
+                          child: const Text(
+                            "Don't have an account ? Sign up",
+                            style: TextStyle(
+                                color: Color.fromRGBO(143, 148, 251, 1)),
+                          ),
                         )),
                   ],
                 ),
