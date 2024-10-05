@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:ecom/app_scaffold.dart';
-import 'package:ecom/auth/login.dart';
-import 'package:ecom/auth/sign_up.dart';
-import 'package:ecom/home.dart';
+import 'package:ecom/screens/auth/login.dart';
+import 'package:ecom/screens/auth/sign_up.dart';
+import 'package:ecom/screens/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
