@@ -78,6 +78,21 @@ class MyApp extends StatelessWidget {
           seedColor: color1,
           brightness: Brightness.light,
         ),
+        navigationBarTheme: NavigationBarThemeData(
+          // elevation: 8,
+          shadowColor: color1,
+          overlayColor: const WidgetStatePropertyAll(color4),
+          backgroundColor: Colors.white,
+          labelTextStyle: WidgetStateProperty.all(
+            const TextStyle(
+              fontSize: 12,
+              color: color2,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+          indicatorColor: Colors.transparent,
+        ),
         visualDensity: const VisualDensity(vertical: -4, horizontal: -4),
         scaffoldBackgroundColor: Colors.white,
         // navigationRailTheme: const NavigationRailThemeData(
