@@ -42,6 +42,7 @@ dependencies:
   flutter_adaptive_scaffold:
   firebase_storage:
   cloud_firestore:
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:
