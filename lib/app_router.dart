@@ -1,10 +1,7 @@
-// import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import 'dart:async';
-
 import 'package:ecom/app_scaffold.dart';
 import 'package:ecom/auth/login.dart';
-import 'package:ecom/auth/verification.dart';
+import 'package:ecom/auth/sign_up.dart';
 import 'package:ecom/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -75,9 +72,14 @@ class AppRouter {
     redirect: (BuildContext context, GoRouterState state) {
       final loggedIn = _auth.currentUser != null;
       final goingToLogin = state.matchedLocation.startsWith('/login');
+      final goingToRegister = state.matchedLocation.startsWith('/register');
+      if (!loggedIn && goingToRegister) {
+        return '/register';
+      }
       if (!loggedIn && !goingToLogin) {
         return '/login?from=${state.matchedLocation}';
       }
+
       if (loggedIn && goingToLogin) return '/';
 
       return null;
@@ -85,7 +87,7 @@ class AppRouter {
     navigatorKey: _rootNavigatorKey,
     routes: [
       ShellRoute(
-        // navigatorKey: _shellNavigatorKey,
+        navigatorKey: _shellNavigatorKey,
         builder: (BuildContext context, GoRouterState state, Widget child) {
           int index = navList.indexWhere(
             (e) => e['path'] != '/' && state.uri.path.startsWith(e['path']),
@@ -100,35 +102,30 @@ class AppRouter {
         },
         routes: [
           GoRoute(
-            // parentNavigatorKey: _shellNavigatorKey,
-            path: '/home',
+            parentNavigatorKey: _shellNavigatorKey,
+            path: '/',
             builder: (BuildContext context, GoRouterState state) {
               return const HomeScreen(
                   // tag: 'all',
                   );
             },
           ),
-          GoRoute(
-            // parentNavigatorKey: _rootNavigatorKey,
-            path: '/login',
-            builder: (BuildContext context, GoRouterState state) {
-              return LoginScreen();
-            },
-            routes: [
-              GoRoute(
-                parentNavigatorKey: _rootNavigatorKey,
-                path: ':phone/:verificationId',
-                builder: (BuildContext context, GoRouterState state) {
-                  return Verification(
-                      // phone: state.pathParameters['phone'],
-                      // verificationId: state.pathParameters['verificationId'],
-                      );
-                },
-              ),
-            ],
-          ),
         ],
-      )
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: '/login',
+        builder: (BuildContext context, GoRouterState state) {
+          return const LoginPage();
+        },
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: '/register',
+        builder: (BuildContext context, GoRouterState state) {
+          return SignUpPage();
+        },
+      ),
     ],
   );
 }
