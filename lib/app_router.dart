@@ -2,7 +2,11 @@ import 'dart:async';
 import 'package:ecom/app_scaffold.dart';
 import 'package:ecom/screens/auth/login.dart';
 import 'package:ecom/screens/auth/sign_up.dart';
+import 'package:ecom/screens/bookmark.dart';
+import 'package:ecom/screens/cart.dart';
+import 'package:ecom/screens/discover.dart';
 import 'package:ecom/screens/home.dart';
+import 'package:ecom/screens/profile/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -31,39 +35,6 @@ class AppRouter {
   AppRouter._();
   static final instance = AppRouter._();
 
-  static List<Map<String, dynamic>> navList = [
-    {
-      'icon': const Icon(Icons.home),
-      'selectedIcon': const Icon(Icons.home),
-      'label': 'Home',
-      'path': '/',
-    },
-    {
-      'icon': const Icon(Icons.home),
-      'selectedIcon': const Icon(Icons.home),
-      'label': 'Home',
-      'path': '/',
-    },
-    // {
-    //   'icon': const Icon(Icons.storefront_outlined),
-    //   'selectedIcon': const Icon(Icons.storefront),
-    //   'label': 'Explore',
-    //   'path': '/explore',
-    // },
-    // {
-    //   'icon': const Icon(Icons.account_box),
-    //   'selectedIcon': const Icon(Icons.account_box),
-    //   // 'label': 'Account',
-    //   'path': '/account',
-    // },
-    // {
-    //   'icon': const Icon(Icons.file_copy_outlined),
-    //   'selectedIcon': const Icon(Icons.file_copy),
-    //   'label': 'Help',
-    //   'path': '/help',
-    // }
-  ];
-
   final _auth = FirebaseAuth.instance;
 
   late final router = GoRouter(
@@ -89,15 +60,16 @@ class AppRouter {
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (BuildContext context, GoRouterState state, Widget child) {
-          int index = navList.indexWhere(
-            (e) => e['path'] != '/' && state.uri.path.startsWith(e['path']),
-          );
+          // int index = navList.indexWhere(
+          //   (e) => e['path'] != '/' && state.uri.path.startsWith(e['path']),
+          // );
 
           return AppScaffold(
-            selectedIndex: index == -1 ? 0 : index,
+            // selectedIndex: index == -1 ? 0 : index,
+            currentPath: state.uri.path,
             body: child,
-            mobileNavs: 3,
-            navList: navList,
+            // mobileNavs: 3,
+            // navList: navList,
           );
         },
         routes: [
@@ -105,9 +77,35 @@ class AppRouter {
             parentNavigatorKey: _shellNavigatorKey,
             path: '/',
             builder: (BuildContext context, GoRouterState state) {
-              return const HomeScreen(
-                  // tag: 'all',
-                  );
+              return const HomeScreen();
+            },
+          ),
+          GoRoute(
+            parentNavigatorKey: _shellNavigatorKey,
+            path: '/profile',
+            builder: (BuildContext context, GoRouterState state) {
+              return const ProfileScreen();
+            },
+          ),
+          GoRoute(
+            parentNavigatorKey: _shellNavigatorKey,
+            path: '/discover',
+            builder: (BuildContext context, GoRouterState state) {
+              return const Discover();
+            },
+          ),
+          GoRoute(
+            parentNavigatorKey: _shellNavigatorKey,
+            path: '/cart',
+            builder: (BuildContext context, GoRouterState state) {
+              return const Cart();
+            },
+          ),
+          GoRoute(
+            parentNavigatorKey: _shellNavigatorKey,
+            path: '/bookmarks',
+            builder: (BuildContext context, GoRouterState state) {
+              return const Bookmark();
             },
           ),
         ],
@@ -123,7 +121,7 @@ class AppRouter {
         parentNavigatorKey: _rootNavigatorKey,
         path: '/register',
         builder: (BuildContext context, GoRouterState state) {
-          return SignUpPage();
+          return const SignUpPage();
         },
       ),
     ],

@@ -1,28 +1,75 @@
+import 'package:ecom/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart'; 
-import 'package:firebase_auth/firebase_auth.dart'; 
+import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
 
 class AppScaffold extends StatelessWidget {
   const AppScaffold({
     super.key,
-    required this.selectedIndex,
+    required this.currentPath,
     required this.body,
     this.secondaryBody,
-    this.mobileNavs = 4,
-    required this.navList,
+    this.mobileNavs = 5,
   });
 
   final Widget body;
+  final String currentPath;
   final Widget? secondaryBody;
-  final int selectedIndex;
   final int mobileNavs;
-  final List<Map<String, dynamic>> navList;
- 
 
- 
   @override
   Widget build(BuildContext context) {
+    SvgPicture svgIcon(String src, {Color? color}) {
+      return SvgPicture.asset(
+        src,
+        height: 24,
+        colorFilter: ColorFilter.mode(
+            color ??
+                Theme.of(context).iconTheme.color!.withOpacity(
+                    Theme.of(context).brightness == Brightness.dark ? 0.3 : 1),
+            BlendMode.srcIn),
+      );
+    }
+
+    List<Map<String, dynamic>> navList = [
+      {
+        'icon': svgIcon("assets/icons/Shop.svg"),
+        'selectedIcon':   svgIcon("assets/icons/Shop.svg", color: primaryColor),
+        'label': 'Home',
+        'path': '/',
+      },
+      {
+        'icon': svgIcon("assets/icons/Category.svg"),
+        'selectedIcon':   svgIcon("assets/icons/Category.svg", color: primaryColor),
+        'label': 'Discover',
+        'path': '/discover',
+      },
+      {
+        'icon':  svgIcon("assets/icons/Bookmark.svg"),
+        'selectedIcon':  svgIcon("assets/icons/Bookmark.svg"),
+        'label': 'Bookmarks',
+        'path': '/bookmarks',
+      },
+      {
+        'icon':  svgIcon("assets/icons/Bag.svg"),
+        'selectedIcon':  svgIcon("assets/icons/Bag.svg", color: primaryColor),
+        'label': 'Cart',
+        'path': '/cart',
+      },
+      {
+        'icon':  svgIcon("assets/icons/Profile.svg"),
+        'selectedIcon': svgIcon("assets/icons/Profile.svg", color: primaryColor),
+        'label': 'Profile',
+        'path': '/profile',
+      }
+    ];
+    int index = navList.indexWhere(
+      (e) => e['path'] != '/' && currentPath.startsWith(e['path']),
+    );
+    int selectedIndex = index == -1 ? 0 : index;
+
     return AdaptiveLayout(
       bodyRatio: 70,
       primaryNavigation: SlotLayout(
@@ -46,7 +93,8 @@ class AppScaffold extends StatelessWidget {
                     const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: Text('v1.0.0', style: Theme.of(context).textTheme.bodySmall),
+                      child: Text('v1.0.0',
+                          style: Theme.of(context).textTheme.bodySmall),
                     ),
                   ],
                 ),
@@ -88,26 +136,70 @@ class AppScaffold extends StatelessWidget {
         config: <Breakpoint, SlotLayoutConfig>{
           Breakpoints.small: SlotLayout.from(
             key: const Key('Bottom Navigation Small'),
-            builder: (_) => AdaptiveScaffold.standardBottomNavigationBar(
+            builder: (_) => 
+            // BottomNavigationBar(
+            //   currentIndex: _currentIndex,
+            //   onTap: (index) {
+            //     if (index != _currentIndex) {
+            //       setState(() {
+            //         _currentIndex = index;
+            //       });
+            //     }
+            //   },
+            //   backgroundColor: Theme.of(context).brightness == Brightness.light
+            //       ? Colors.white
+            //       : const Color(0xFF101015),
+            //   type: BottomNavigationBarType.fixed,
+            //   // selectedLabelStyle: TextStyle(color: primaryColor),
+            //   selectedFontSize: 12,
+            //   // selectedItemColor: primaryColor,
+            //   unselectedItemColor: Colors.transparent,
+            //   items: [
+            //     BottomNavigationBarItem(
+            //       icon: svgIcon("assets/icons/Shop.svg"),
+            //       activeIcon:
+            //           svgIcon("assets/icons/Shop.svg", color: primaryColor),
+            //       label: "Shop",
+            //     ),
+            //     BottomNavigationBarItem(
+            //       icon: svgIcon("assets/icons/Category.svg"),
+            //       activeIcon:
+            //           svgIcon("assets/icons/Category.svg", color: primaryColor),
+            //       label: "Discover",
+            //     ),
+            //     BottomNavigationBarItem(
+            //       icon: svgIcon("assets/icons/Bookmark.svg"),
+            //       activeIcon:
+            //           svgIcon("assets/icons/Bookmark.svg", color: primaryColor),
+            //       label: "Bookmark",
+            //     ),
+            //     BottomNavigationBarItem(
+            //       icon: svgIcon("assets/icons/Bag.svg"),
+            //       activeIcon:
+            //           svgIcon("assets/icons/Bag.svg", color: primaryColor),
+            //       label: "Cart",
+            //     ),
+            //     BottomNavigationBarItem(
+            //       icon: svgIcon("assets/icons/Profile.svg"),
+            //       activeIcon:
+            //           svgIcon("assets/icons/Profile.svg", color: primaryColor),
+            //       label: "Profile",
+            //     ),
+            //   ],
+            // ),
+            AdaptiveScaffold.standardBottomNavigationBar(
               destinations: [
                 ...navList.take(mobileNavs).map(
                       (e) => NavigationDestination(
-                        icon: e['icon'],
-                        selectedIcon: e['selectedIcon'],
-                        label: '',
-                      ),
+                          icon: e['icon'],
+                          selectedIcon: e['selectedIcon'],
+                          label: e['label']),
                     ),
-                if (navList.length > mobileNavs)
-                  const NavigationDestination(
-                    icon: Icon(Icons.more_horiz_outlined),
-                    selectedIcon: Icon(Icons.more_horiz),
-                    label: '',
-                  ),
               ],
-              currentIndex: selectedIndex >= mobileNavs ? mobileNavs : selectedIndex,
+              currentIndex:
+                  selectedIndex >= mobileNavs ? mobileNavs : selectedIndex,
               onDestinationSelected: (index) {
                 if (index == mobileNavs) {
-          
                 } else {
                   GoRouter.of(context).go(navList[index]['path'] ?? '/');
                 }
