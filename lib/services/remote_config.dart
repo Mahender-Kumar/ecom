@@ -12,15 +12,28 @@ class RemoteConfigService with ChangeNotifier {
   Future<void> _initializeRemoteConfig() async {
     _remoteConfig = FirebaseRemoteConfig.instance;
 
-    // Set default values
-    await _remoteConfig.setDefaults(<String, dynamic>{
-      'show_discounted_price': false,
-    });
+    try {
+      // Set default values
+      await _remoteConfig.setDefaults(<String, dynamic>{
+        'show_discounted_price': false,
+      });
 
-    // Fetch and activate
-    await _remoteConfig.fetchAndActivate();
-    showDiscountedPrice = _remoteConfig.getBool('show_discounted_price');
+      // Set the minimum fetch interval to 10 seconds for development (set higher in production)
+      _remoteConfig.setConfigSettings(RemoteConfigSettings(
+        fetchTimeout: const Duration(seconds: 10), // Timeout for fetching remote config
+        minimumFetchInterval: const Duration(seconds: 10), // Minimum fetch interval
+      ));
 
-    notifyListeners();
+      // Fetch and activate the latest values
+      await _remoteConfig.fetchAndActivate();
+
+      // Get the latest value for 'show_discounted_price'
+      showDiscountedPrice = _remoteConfig.getBool('show_discounted_price');
+
+      notifyListeners(); // Notify listeners to update UI
+    } catch (e) {
+      print('Remote Config fetch failed: $e');
+      // Handle any errors or fallback logic
+    }
   }
 }

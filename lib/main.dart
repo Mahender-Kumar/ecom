@@ -3,6 +3,7 @@ import 'package:ecom/constants.dart';
 import 'package:ecom/firebase_options.dart';
 import 'package:ecom/services/auth_service.dart';
 import 'package:ecom/services/product_service.dart';
+import 'package:ecom/services/remote_config.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ void main() async {
       ChangeNotifierProvider(
         create: (_) => ProductProvider(),
       ),
+      ChangeNotifierProvider(create: (_) => RemoteConfigService()),
     ], child: const MyApp()),
   );
 }
