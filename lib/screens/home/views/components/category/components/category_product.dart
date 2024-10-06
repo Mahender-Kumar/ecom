@@ -108,7 +108,7 @@ class CategoryProduct extends StatelessWidget {
                     .fetchProductList(category: category),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const ProductsSkelton();
+                    return const GridProductsSkelton();
                   }
                   final productList = snapshot.data ?? [];
 

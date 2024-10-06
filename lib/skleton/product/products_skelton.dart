@@ -27,3 +27,31 @@ class ProductsSkelton extends StatelessWidget {
   }
 }
 
+class GridProductsSkelton extends StatelessWidget {
+  const GridProductsSkelton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 0.9,
+        crossAxisSpacing: defaultPadding,
+        mainAxisSpacing: defaultPadding,
+      ),
+      itemCount: 6,
+      itemBuilder: (context, index) {
+        return Padding(
+            padding: EdgeInsets.only(
+              left: index % 2 == 0 ? defaultPadding : 0,
+              right: defaultPadding,
+            ),
+            child: ProductCardSkelton());
+      },
+    );
+  }
+}
