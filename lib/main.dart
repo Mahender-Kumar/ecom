@@ -2,6 +2,7 @@ import 'package:ecom/app_router.dart';
 import 'package:ecom/constants.dart';
 import 'package:ecom/firebase_options.dart';
 import 'package:ecom/services/auth_service.dart';
+import 'package:ecom/services/product_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,9 @@ void main() async {
     MultiProvider(providers: [
       Provider<FirebaseAuthMethods>(
         create: (_) => FirebaseAuthMethods(FirebaseAuth.instance),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => ProductProvider(),
       ),
     ], child: const MyApp()),
   );
