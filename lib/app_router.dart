@@ -5,7 +5,7 @@ import 'package:ecom/screens/auth/sign_up.dart';
 import 'package:ecom/screens/bookmark.dart';
 import 'package:ecom/screens/cart.dart';
 import 'package:ecom/screens/discover.dart';
-import 'package:ecom/screens/home/views/home_screen.dart'; 
+import 'package:ecom/screens/home/views/home_screen.dart';
 import 'package:ecom/screens/profile/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

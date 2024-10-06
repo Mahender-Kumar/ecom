@@ -24,7 +24,7 @@ class _PopularProductsState extends State<PopularProducts> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final productProvider =
           Provider.of<ProductProvider>(context, listen: false);
-      productProvider.fetchProducts(); // Fetch products after build
+      productProvider.fetchProducts();  
     });
   }
 
@@ -41,15 +41,14 @@ class _PopularProductsState extends State<PopularProducts> {
             style: Theme.of(context).textTheme.titleSmall,
           ),
         ),
-        // While loading use 👇
-        // const ProductsSkelton(),
+       
         SizedBox(
           height: 220,
           child: Consumer<ProductProvider>(
               builder: (context, productProvider, child) {
             return ListView.builder(
                 scrollDirection: Axis.horizontal,
-                // Find demoPopularProducts on models/ProductModel.dart
+               
                 itemCount: productProvider.products.length,
                 itemBuilder: (context, index) {
                   final demoPopularProducts = productProvider.products[index];
@@ -74,7 +73,7 @@ class _PopularProductsState extends State<PopularProducts> {
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) {
-                              // bool isProductAvailable = settings.arguments as bool? ?? true;
+                              
                               return ProductDetailsScreen(
                                 product: demoPopularProducts,
                               );

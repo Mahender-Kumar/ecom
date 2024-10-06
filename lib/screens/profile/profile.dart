@@ -49,7 +49,7 @@ class ProfileScreen extends StatelessWidget {
             text: "Orders",
             svgSrc: "assets/icons/Order.svg",
             press: () {
-              // Navigator.pushNamed(context, ordersScreenRoute);
+         
             },
           ),
           ProfileMenuListTile(
@@ -66,7 +66,7 @@ class ProfileScreen extends StatelessWidget {
             text: "Addresses",
             svgSrc: "assets/icons/Address.svg",
             press: () {
-              // Navigator.pushNamed(context, addressesScreenRoute);
+          
             },
           ),
           ProfileMenuListTile(
@@ -80,7 +80,7 @@ class ProfileScreen extends StatelessWidget {
             text: "Wallet",
             svgSrc: "assets/icons/Wallet.svg",
             press: () {
-              // Navigator.pushNamed(context, walletScreenRoute);
+               
             },
           ),
           const SizedBox(height: defaultPadding),
@@ -97,14 +97,14 @@ class ProfileScreen extends StatelessWidget {
             title: "Notification",
             trilingText: "Off",
             press: () {
-              // Navigator.pushNamed(context, enableNotificationScreenRoute);
+             
             },
           ),
           ProfileMenuListTile(
             text: "Preferences",
             svgSrc: "assets/icons/Preferences.svg",
             press: () {
-              // Navigator.pushNamed(context, preferencesScreenRoute);
+             
             },
           ),
           const SizedBox(height: defaultPadding),
@@ -120,7 +120,7 @@ class ProfileScreen extends StatelessWidget {
             text: "Language",
             svgSrc: "assets/icons/Language.svg",
             press: () {
-              // Navigator.pushNamed(context, selectLanguageScreenRoute);
+            
             },
           ),
           ProfileMenuListTile(
@@ -141,7 +141,7 @@ class ProfileScreen extends StatelessWidget {
             text: "Get Help",
             svgSrc: "assets/icons/Help.svg",
             press: () {
-              // Navigator.pushNamed(context, getHelpScreenRoute);
+              
             },
           ),
           ProfileMenuListTile(
@@ -160,24 +160,7 @@ class ProfileScreen extends StatelessWidget {
           ),
           const SizedBox(height: defaultPadding),
 
-          // Log Out
-          // ListTile(
-          //   onTap: () {},
-          //   minLeadingWidth: 24,
-          //   leading: SvgPicture.asset(
-          //     "assets/icons/Logout.svg",
-          //     height: 24,
-          //     width: 24,
-          //     colorFilter: const ColorFilter.mode(
-          //       errorColor,
-          //       BlendMode.srcIn,
-          //     ),
-          //   ),
-          //   title: const Text(
-          //     "Log Out",
-          //     style: TextStyle(color: errorColor, fontSize: 14, height: 1),
-          //   ),
-          // )
+          
         ],
       ),
     );

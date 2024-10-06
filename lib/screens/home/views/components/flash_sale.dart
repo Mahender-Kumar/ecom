@@ -13,7 +13,7 @@ class FlashSale extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Access the RemoteConfigService
+ 
     final remoteConfigService = Provider.of<RemoteConfigService>(context);
 
     return Column(

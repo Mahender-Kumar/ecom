@@ -18,17 +18,7 @@ class MostPopular extends StatefulWidget {
 }
 
 class _MostPopularState extends State<MostPopular> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   WidgetsBinding.instance.addPostFrameCallback((_) {
-  //     final productProvider =
-  //         Provider.of<ProductProvider>(context, listen: false);
-  //     // productProvider.fetchProductList(
-  //     //     category: 'mens-shoes'); // Fetch products after build
-  //   });
-  // }
-
+ 
   @override
   Widget build(BuildContext context) {
     final remoteConfigService = Provider.of<RemoteConfigService>(context);

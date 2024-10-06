@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              // Navigator.pushNamed(context, searchScreenRoute);
+           
             },
             icon: SvgPicture.asset(
               "assets/icons/Search.svg",
@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              // Navigator.pushNamed(context, notificationsScreenRoute);
+        
             },
             icon: SvgPicture.asset(
               "assets/icons/Notification.svg",
@@ -65,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                     subtitle: "50% Off",
                     discountParcent: 50,
                     press: () {
-                      // Navigator.pushNamed(context, onSaleScreenRoute);
+                    
                     },
                   ),
                   const SizedBox(height: defaultPadding / 4),
@@ -73,7 +73,7 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            // const SliverToBoxAdapter(child: BestSellers()),
+             
             const SliverToBoxAdapter(child: MostPopular()),
             SliverToBoxAdapter(
               child: Column(
@@ -81,21 +81,20 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: defaultPadding * 1.5),
 
                   const SizedBox(height: defaultPadding / 4),
-                  // While loading use 👇
-                  // const BannerSSkelton(),
+                
                   BannerSStyle5(
                     title: "New \narrival",
                     subtitle: "SPECIAL OFFER",
                     bottomText: "Collection".toUpperCase(),
                     press: () {
-                      // Navigator.pushNamed(context, onSaleScreenRoute);
+                  
                     },
                   ),
                   const SizedBox(height: defaultPadding / 4),
                 ],
               ),
             ),
-            // const SliverToBoxAdapter(child: BestSellers()),
+            
           ],
         ),
       ),
