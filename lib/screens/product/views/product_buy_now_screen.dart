@@ -1,5 +1,5 @@
-import 'package:ecom/cart_button.dart';
-import 'package:ecom/custom_modal_bottom_sheet.dart';
+import 'package:ecom/utils/cart_button.dart';
+import 'package:ecom/utils/custom_modal_bottom_sheet.dart';
 import 'package:ecom/models.dart';
 import 'package:ecom/screens/product/views/added_to_cart_message_screen.dart';
 import 'package:ecom/screens/product/views/components/product_list_tile.dart'; 

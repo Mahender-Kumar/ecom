@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:ecom/blur_container.dart';
+import 'package:ecom/utils/blur_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
