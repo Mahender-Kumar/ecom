@@ -51,6 +51,29 @@ class Product {
     return price - (price * (discountPercentage / 100));
   }
 
+  double getAverageRating() {
+    if (reviews.isEmpty) {
+      return 0.0; // Return 0 if there are no reviews
+    }
+    double totalRating =
+        reviews.fold(0.0, (sum, review) => sum + review.rating);
+    double average = totalRating / reviews.length; // Calculate the average
+    return double.parse(
+        average.toStringAsFixed(1)); // Return up to 1 decimal place
+  }
+
+   Map<int, int> countRatings() {
+    Map<int, int> ratingCount = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}; // Initialize counts
+
+    for (var review in reviews) {
+      if (review.rating >= 1 && review.rating <= 5) {
+        ratingCount[review.rating] = ratingCount[review.rating]! + 1; // Increment count for the rating
+      }
+    }
+
+    return ratingCount; // Return the count of ratings
+  }
+
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
       id: json['id'],
