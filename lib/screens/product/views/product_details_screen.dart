@@ -51,7 +51,6 @@ class ProductDetailsScreen extends StatelessWidget {
                   onPressed: () {},
                   icon: SvgPicture.asset(
                     "assets/icons/Bookmark.svg",
-                    // color: Theme.of(context).textTheme.bodyLarge!.color,
                   ),
                 ),
               ],
@@ -83,13 +82,7 @@ class ProductDetailsScreen extends StatelessWidget {
             ProductListTile(
               svgSrc: "assets/icons/Delivery.svg",
               title: "Shipping Information",
-              press: () {
-                customModalBottomSheet(context,
-                    height: MediaQuery.of(context).size.height * 0.92,
-                    child: ShippingInformation(
-                      product: product,
-                    ));
-              },
+              press: () {},
             ),
             ProductListTile(
               svgSrc: "assets/icons/Return.svg",
@@ -124,7 +117,13 @@ class ProductDetailsScreen extends StatelessWidget {
               title: "Reviews",
               isShowBottomBorder: true,
               press: () {
-                // Navigator.pushNamed(context, productReviewsScreenRoute);
+                customModalBottomSheet(
+                  context,
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  child: ReviewsScreen(
+                    product: product,
+                  ),
+                );
               },
             ),
             SliverPadding(

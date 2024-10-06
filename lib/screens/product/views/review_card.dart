@@ -1,7 +1,7 @@
 import 'package:ecom/constants.dart';
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
- 
 
 class ReviewCard extends StatelessWidget {
   const ReviewCard({
@@ -56,22 +56,22 @@ class ReviewCard extends StatelessWidget {
                 ),
                 Text("Based on $numOfReviews Reviews"),
                 const SizedBox(height: defaultPadding),
-                // RatingBar.builder(
-                //   initialRating: rating,
-                //   itemSize: 20,
-                //   itemPadding: const EdgeInsets.only(right: defaultPadding / 4),
-                //   unratedColor: Theme.of(context)
-                //       .textTheme
-                //       .bodyLarge!
-                //       .color!
-                //       .withOpacity(0.08),
-                //   glow: false,
-                //   allowHalfRating: true,
-                //   ignoreGestures: true,
-                //   onRatingUpdate: (value) {},
-                //   itemBuilder: (context, index) =>
-                //       SvgPicture.asset("assets/icons/Star_filled.svg"),
-                // ),
+                RatingBar.builder(
+                  initialRating: rating,
+                  itemSize: 20,
+                  itemPadding: const EdgeInsets.only(right: defaultPadding / 4),
+                  unratedColor: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .color!
+                      .withOpacity(0.08),
+                  glow: false,
+                  allowHalfRating: true,
+                  ignoreGestures: true,
+                  onRatingUpdate: (value) {},
+                  itemBuilder: (context, index) =>
+                      SvgPicture.asset("assets/icons/Star_filled.svg"),
+                ),
               ],
             ),
           ),
