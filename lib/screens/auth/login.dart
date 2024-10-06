@@ -220,7 +220,7 @@ class _LoginPageState extends State<LoginPage> {
                         duration: const Duration(milliseconds: 2000),
                         child: InkWell(
                           onTap: () {
-                            print('asdasdd');
+                           
 
                             context.go('/register');
                           },

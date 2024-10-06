@@ -43,8 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
               final product = productProvider.products[index];
 
               // Check if the remote config dictates to show the discounted price
-              print(remoteConfig.showDiscountedPrice);
-              final showDiscountedPrice = remoteConfig.showDiscountedPrice;
+               final showDiscountedPrice = remoteConfig.showDiscountedPrice;
               final priceToShow = showDiscountedPrice
                   ? product.discountedPrice.toStringAsFixed(2)
                   : product.price.toStringAsFixed(2);
