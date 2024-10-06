@@ -104,7 +104,7 @@ class ProductProvider with ChangeNotifier {
     String? searchQuery,
     List<String>? tags,
   }) {
-    print(tags);
+   
     String baseUrl = 'https://dummyjson.com/products';
 
     // Check if category is provided
