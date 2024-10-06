@@ -3,9 +3,8 @@ import 'package:ecom/screens/profile/components/profile_card.dart';
 import 'package:ecom/screens/profile/components/profile_menu_list_item.dart';
 import 'package:ecom/utils/divider_list_tile.dart';
 import 'package:ecom/utils/network_image_loader.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
- 
- 
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -149,6 +148,14 @@ class ProfileScreen extends StatelessWidget {
             text: "FAQ",
             svgSrc: "assets/icons/FAQ.svg",
             press: () {},
+            isShowDivider: false,
+          ),
+          ProfileMenuListTile(
+            text: "Log Out",
+            svgSrc: "assets/icons/Logout.svg",
+            press: () async {
+              await FirebaseAuth.instance.signOut();
+            },
             isShowDivider: false,
           ),
           const SizedBox(height: defaultPadding),
