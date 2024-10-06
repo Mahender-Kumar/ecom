@@ -1,4 +1,4 @@
- 
+import 'package:ecom/screens/product/views/product_details_bottom_sheet.dart';
 import 'package:ecom/utils/cart_button.dart';
 import 'package:ecom/constants.dart';
 import 'package:ecom/utils/custom_modal_bottom_sheet.dart';
@@ -8,10 +8,11 @@ import 'package:ecom/screens/product/views/review_card.dart';
 import 'package:ecom/services/product_service.dart';
 import 'package:ecom/skleton/product/products_skelton.dart';
 import 'package:ecom/utils/product/product_card.dart';
+import 'package:ecom/utils/review.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
- 
+
 import 'components/product_images.dart';
 import 'components/product_info.dart';
 import 'components/product_list_tile.dart';
@@ -73,8 +74,10 @@ class ProductDetailsScreen extends StatelessWidget {
               title: "Product Details",
               press: () {
                 customModalBottomSheet(context,
-                    height: MediaQuery.of(context).size.height * 0.92,
-                    child: Container());
+                    height: MediaQuery.of(context).size.height * 0.6,
+                    child: ProductDetailsBottomSheet(
+                      product: product,
+                    ));
               },
             ),
             ProductListTile(
@@ -83,7 +86,9 @@ class ProductDetailsScreen extends StatelessWidget {
               press: () {
                 customModalBottomSheet(context,
                     height: MediaQuery.of(context).size.height * 0.92,
-                    child: Container());
+                    child: ShippingInformation(
+                      product: product,
+                    ));
               },
             ),
             ProductListTile(
