@@ -1,6 +1,10 @@
 import 'package:ecom/app_router.dart';
 import 'package:ecom/constants.dart';
 import 'package:ecom/firebase_options.dart';
+import 'package:ecom/screens/theme/button_theme.dart';
+import 'package:ecom/screens/theme/checkbox_themedata.dart';
+import 'package:ecom/screens/theme/input_decoration_theme.dart';
+import 'package:ecom/screens/theme/theme_data.dart';
 import 'package:ecom/services/auth_service.dart';
 import 'package:ecom/services/product_service.dart';
 import 'package:ecom/services/remote_config.dart';
@@ -33,79 +37,27 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Dummy Ecom',
-      theme: ThemeData(
-        inputDecorationTheme: const InputDecorationTheme(
-          isDense: true,
-          disabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.black54,
-            ),
-          ),
-        ),
-        appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
-        cardTheme: CardTheme(
-          color: Colors.white,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              color: Theme.of(context).colorScheme.outlineVariant,
-            ),
-            borderRadius: BorderRadius.circular(8),
-          ),
-        ),
-        dataTableTheme: DataTableThemeData(
-          dataRowMaxHeight: double.infinity,
-          headingRowColor: WidgetStateProperty.all(
-            Theme.of(context).colorScheme.primaryContainer,
-          ),
-          headingRowHeight: 36,
-          headingTextStyle: const TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-          dataTextStyle: const TextStyle(
-            fontSize: 12,
-          ),
-          dataRowMinHeight: 36,
-          columnSpacing: 16,
-        ),
-        tabBarTheme: const TabBarTheme(
-          indicatorSize: TabBarIndicatorSize.tab,
-          indicator: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                color: Color(0xff0161a4),
-                width: 2,
-              ),
-            ),
-            color: Color(0xffd1e4ff),
-          ),
-        ),
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: color1,
-          brightness: Brightness.light,
-        ),
-        navigationBarTheme: NavigationBarThemeData(
-          // elevation: 8,
-          shadowColor: color1,
-          overlayColor: const WidgetStatePropertyAll(color4),
-          backgroundColor: Colors.white,
-          labelTextStyle: WidgetStateProperty.all(
-            const TextStyle(
-              fontSize: 12,
-              color: color2,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-          indicatorColor: Colors.transparent,
-        ),
-        visualDensity: const VisualDensity(vertical: -4, horizontal: -4),
-        scaffoldBackgroundColor: Colors.white,
-        // navigationRailTheme: const NavigationRailThemeData(
-        //   indicatorColor: Color(0xff0161a4),
-        //   selectedIconTheme: IconThemeData(color: Colors.white),
-        // ),
+      theme:ThemeData(
+      brightness: Brightness.light,
+      fontFamily: "Plus Jakarta",
+      primarySwatch: primaryMaterialColor,
+      primaryColor: primaryColor,
+      scaffoldBackgroundColor: Colors.white,
+      iconTheme: const IconThemeData(color: blackColor),
+      textTheme: const TextTheme(
+        bodyMedium: TextStyle(color: blackColor40),
       ),
+      elevatedButtonTheme: elevatedButtonThemeData,
+      textButtonTheme: textButtonThemeData,
+      outlinedButtonTheme: outlinedButtonTheme(),
+      inputDecorationTheme: lightInputDecorationTheme,
+      checkboxTheme: checkboxThemeData.copyWith(
+        side: const BorderSide(color: blackColor40),
+      ),
+      appBarTheme: appBarLightTheme,
+      scrollbarTheme: scrollbarThemeData,
+      dataTableTheme: dataTableLightThemeData,
+    ),
       darkTheme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: color1,
