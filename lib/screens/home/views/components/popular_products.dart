@@ -1,5 +1,6 @@
 import 'package:ecom/screens/product/views/product_details_screen.dart';
 import 'package:ecom/services/product_service.dart';
+import 'package:ecom/services/remote_config.dart';
 import 'package:ecom/utils/product/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +20,7 @@ class _PopularProductsState extends State<PopularProducts> {
   @override
   void initState() {
     super.initState();
+    RemoteConfigService();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final productProvider =
           Provider.of<ProductProvider>(context, listen: false);

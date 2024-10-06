@@ -1,5 +1,6 @@
 import 'package:ecom/screens/product/views/product_details_screen.dart';
 import 'package:ecom/services/product_service.dart';
+import 'package:ecom/services/remote_config.dart';
 import 'package:ecom/skleton/product/secondery_produts_skelton.dart';
 import 'package:ecom/utils/product/secondary_product_card.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,8 @@ class _MostPopularState extends State<MostPopular> {
 
   @override
   Widget build(BuildContext context) {
+    final remoteConfigService = Provider.of<RemoteConfigService>(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -69,13 +72,16 @@ class _MostPopularState extends State<MostPopular> {
                           brandName: demoPopularProducts.brand ?? '',
                           title: demoPopularProducts.title,
                           price: demoPopularProducts.price,
-                          priceAfetDiscount: double.parse(demoPopularProducts
-                              .discountedPrice
-                              .toStringAsFixed(2)),
-                          dicountpercent:
-                              demoPopularProducts.discountPercentage.toInt(),
+                          priceAfetDiscount: remoteConfigService
+                                  .showDiscountedPrice
+                              ? double.parse(demoPopularProducts.discountedPrice
+                                  .toStringAsFixed(2))
+                              : null,
+                          dicountpercent: remoteConfigService
+                                  .showDiscountedPrice
+                              ? demoPopularProducts.discountPercentage.toInt()
+                              : null,
                           press: () {
-                          
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) {

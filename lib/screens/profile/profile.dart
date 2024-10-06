@@ -15,8 +15,8 @@ class ProfileScreen extends StatelessWidget {
       body: ListView(
         children: [
           ProfileCard(
-            name: "Sepide",
-            email: "theflutterway@gmail.com",
+            name: "Mahe",
+            email: "test@gmail.com",
             imageSrc: "https://i.imgur.com/IXnwbLk.png",
             // proLableText: "Sliver",
             // isPro: true, if the user is pro

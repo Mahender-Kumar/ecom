@@ -1,6 +1,7 @@
 import 'package:ecom/constants.dart';
 import 'package:ecom/screens/product/views/product_details_screen.dart';
 import 'package:ecom/services/product_service.dart';
+import 'package:ecom/services/remote_config.dart';
 import 'package:ecom/skleton/product/products_skelton.dart';
 import 'package:ecom/utils/Banner/M/banner_m_with_counter.dart';
 import 'package:ecom/utils/product/product_card.dart';
@@ -8,12 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class FlashSale extends StatelessWidget {
-  const FlashSale({
-    super.key,
-  });
+  const FlashSale({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Access the RemoteConfigService
+    final remoteConfigService = Provider.of<RemoteConfigService>(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -59,18 +61,23 @@ class FlashSale extends StatelessWidget {
                             brandName: demoFlashSaleProducts.brand ?? "",
                             title: demoFlashSaleProducts.title,
                             price: demoFlashSaleProducts.price,
-                            priceAfetDiscount: double.parse(
-                                demoFlashSaleProducts.discountedPrice
-                                    .toStringAsFixed(2)),
-                            dicountpercent: demoFlashSaleProducts
-                                .discountPercentage
-                                .toInt(),
+                            priceAfetDiscount:
+                                remoteConfigService.showDiscountedPrice
+                                    ? double.parse(demoFlashSaleProducts
+                                        .discountedPrice
+                                        .toStringAsFixed(2))
+                                    : null,
+                            dicountpercent:
+                                remoteConfigService.showDiscountedPrice
+                                    ? demoFlashSaleProducts.discountPercentage
+                                        .toInt()
+                                    : null,
                             press: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    // bool isProductAvailable = settings.arguments as bool? ?? true;
-                                    return ProductDetailsScreen(product: demoFlashSaleProducts,);
+                                    return ProductDetailsScreen(
+                                        product: demoFlashSaleProducts);
                                   },
                                   settings:
                                       RouteSettings(arguments: index.isEven),
