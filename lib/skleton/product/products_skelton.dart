@@ -50,7 +50,7 @@ class GridProductsSkelton extends StatelessWidget {
               left: index % 2 == 0 ? defaultPadding : 0,
               right: defaultPadding,
             ),
-            child: ProductCardSkelton());
+            child: const ProductCardSkelton());
       },
     );
   }

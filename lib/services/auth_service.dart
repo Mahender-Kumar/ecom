@@ -1,4 +1,3 @@
- 
 import 'package:ecom/utils/show_snackbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -77,7 +76,9 @@ class FirebaseAuthMethods {
       //   // transition to another page instead of home screen
       // }
     } on FirebaseAuthException catch (e) {
-      showSnackBar(context, e.message!); // Displaying the error message
+      if (context.mounted) {
+        showSnackBar(context, e.message!); // Displaying the error message
+      }
     }
   }
 
@@ -96,7 +97,9 @@ class FirebaseAuthMethods {
     try {
       await _auth.signOut();
     } on FirebaseAuthException catch (e) {
-      showSnackBar(context, e.message!); // Displaying the error message
+      if (context.mounted) {
+        showSnackBar(context, e.message!); // Displaying the error message
+      }
     }
   }
 
@@ -105,8 +108,9 @@ class FirebaseAuthMethods {
     try {
       await _auth.currentUser!.delete();
     } on FirebaseAuthException catch (e) {
-      showSnackBar(context, e.message!); // Displaying the error message
- 
+      if (context.mounted) {
+        showSnackBar(context, e.message!); // Displaying the error message
+      }
     }
   }
 }

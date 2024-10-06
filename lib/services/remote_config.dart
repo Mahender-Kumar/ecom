@@ -1,5 +1,5 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart'; 
 
 class RemoteConfigService with ChangeNotifier {
   late FirebaseRemoteConfig _remoteConfig;
@@ -32,7 +32,9 @@ class RemoteConfigService with ChangeNotifier {
 
       notifyListeners(); // Notify listeners to update UI
     } catch (e) {
-      print('Remote Config fetch failed: $e');
+      if (kDebugMode) {
+        print('Remote Config fetch failed: $e');
+      }
       // Handle any errors or fallback logic
     }
   }

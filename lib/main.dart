@@ -1,10 +1,7 @@
 import 'package:ecom/app_router.dart';
 import 'package:ecom/constants.dart';
 import 'package:ecom/firebase_options.dart';
-import 'package:ecom/screens/theme/button_theme.dart';
-import 'package:ecom/screens/theme/checkbox_themedata.dart';
-import 'package:ecom/screens/theme/input_decoration_theme.dart';
-import 'package:ecom/screens/theme/theme_data.dart';
+ 
 import 'package:ecom/services/auth_service.dart';
 import 'package:ecom/services/product_service.dart';
 import 'package:ecom/services/remote_config.dart';

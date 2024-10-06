@@ -1,7 +1,7 @@
 import 'package:ecom/models.dart';
- 
+
 import 'package:ecom/screens/product/views/review_card.dart';
- 
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
